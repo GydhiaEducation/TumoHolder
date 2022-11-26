@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class BaseObjective : MonoBehaviour
 {
+    public string TextToShow;
+
     private void Start()
     {
         this.NotifySelf();
@@ -15,5 +17,6 @@ public abstract class BaseObjective : MonoBehaviour
         GameManager.Instance.AddObjective(this);
     }
 
+    
 
 }
