@@ -21,6 +21,7 @@ namespace Tumo.Managers
 
         private void Update()
         {
+            // Update once every 30 frames
             if (this._frameCounter < 30)
                 this._frameCounter++;
 

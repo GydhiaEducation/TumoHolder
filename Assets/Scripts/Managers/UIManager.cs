@@ -18,7 +18,8 @@ namespace Tumo.Managers
 
         #region INTERRACTABLE
         public int VerticalOffset = 10;
-        [SerializeField] private TextMeshProUGUI InterractableText;
+        [SerializeField] private TextMeshProUGUI _interractableText;
+        private BaseObjective _focusedObjective;
         #endregion
 
         #region COMPAS
@@ -50,7 +51,7 @@ namespace Tumo.Managers
 
         private void Start()
         {
-            this.InterractableText.gameObject.SetActive(false);
+            this._interractableText.gameObject.SetActive(false);
 
             this.OnObjectiveFocused += _showObjectiveText;
             this.OnObjectiveUnfocused += _hideObjectiveText;
@@ -62,18 +63,24 @@ namespace Tumo.Managers
 
         private void _showObjectiveText(BaseObjective selectedObjective)
         {
-            this.InterractableText.text = selectedObjective.TextToShow;
+            this._interractableText.text = selectedObjective.TextToShow;
 
             Vector3 worldPos = Camera.main.WorldToScreenPoint(selectedObjective.transform.position);
             Vector2 finalPos = new Vector2(worldPos.x, worldPos.y + VerticalOffset);
-            ((RectTransform)this.InterractableText.gameObject.transform).anchoredPosition = finalPos;
+            ((RectTransform)this._interractableText.gameObject.transform).anchoredPosition = finalPos;
 
-            this.InterractableText.gameObject.SetActive(true);
+            this._interractableText.gameObject.SetActive(true);
+
+            selectedObjective.OnHovered();
+            this._focusedObjective = selectedObjective;
         }
 
         private void _hideObjectiveText()
         {
-            this.InterractableText.gameObject.SetActive(false);
+            this._focusedObjective.OnHovered();
+            this._interractableText.gameObject.SetActive(false);
+
+            this._focusedObjective = null;
         }
 
         public void UpdateCompasNeedle(BaseObjective objective, Transform Player)

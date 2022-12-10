@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class BaseObjective : MonoBehaviour
 {
     public string TextToShow;
+    public Outline OutlineEffect;
+    
 
     private void Start()
     {
@@ -17,6 +19,13 @@ public abstract class BaseObjective : MonoBehaviour
         GameManager.Instance.AddObjective(this);
     }
 
-    
+    public void OnHovered()
+    {
+        this.OutlineEffect.enabled = true;
+    }
 
+    public void OnUnhovered()
+    {
+        this.OutlineEffect.enabled = false;
+    }
 }
