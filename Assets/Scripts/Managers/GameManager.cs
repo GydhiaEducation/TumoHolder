@@ -1,3 +1,4 @@
+using SUPERCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,9 +11,19 @@ namespace Tumo.Managers
         private int _frameCounter = 0;
 
         public GameObject PlayerRef;
+        public Camera MainCamera;
 
         public List<BaseObjective> Objectives = new List<BaseObjective>();
         public BaseObjective NearestObjective = null;
+
+        public Camera MinimapCam;
+        public HelperPreset HelperPreset;
+
+        private void Start()
+        {
+            this.PlayerRef = FindObjectOfType<SUPERCharacterAIO>().gameObject;
+            this.MainCamera = this.PlayerRef.GetComponentInChildren<Camera>();
+        }
 
         public void AddObjective(BaseObjective objective)
         {   
@@ -27,11 +38,19 @@ namespace Tumo.Managers
 
             this._frameCounter = 0;
 
+            this.MinimapCam.transform.position = new Vector3(
+                PlayerRef.transform.position.x,
+                MinimapCam.transform.position.y,
+                PlayerRef.transform.position.z);
+
             this.UpdateNearestObjective();
         }
 
         public void UpdateNearestObjective()
         {
+            if (this.Objectives.Count == 0)
+                return;
+                
             int nearestIndex = 0;
             float currNearest = float.MaxValue;
 
