@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextToShow: '[E] pour ramasser le "Coffre"'
   OutlineEffect: {fileID: 5479041763365114018}
+  PickupParticles: {fileID: 1189268617207563880}
 --- !u!1001 &1189268617188039086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,11 +118,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: 60bc526f4be1e044ab9e46340b82ffb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 60bc526f4be1e044ab9e46340b82ffb3, type: 3}
 --- !u!4 &1189268617188164392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 60bc526f4be1e044ab9e46340b82ffb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1189268617188039086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1189268617207563880 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800006, guid: 60bc526f4be1e044ab9e46340b82ffb3,
     type: 3}
   m_PrefabInstance: {fileID: 1189268617188039086}
   m_PrefabAsset: {fileID: 0}
@@ -238,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 0.9339623, g: 0.5506415, b: 0.27666426, a: 1}
-  outlineWidth: 2
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

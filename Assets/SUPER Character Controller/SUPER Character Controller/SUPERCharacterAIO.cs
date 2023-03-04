@@ -1006,7 +1006,9 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }else{
                 currentGroundInfo.groundLayer = null;
                 currentGroundInfo.groundPhysicMaterial = currentGroundInfo.groundFromRay.collider.sharedMaterial;
-                currentGroundInfo.currentMesh = currentGroundInfo.groundFromRay.transform.GetComponent<MeshFilter>().sharedMesh;
+                if(currentGroundInfo.groundFromRay.transform.TryGetComponent<MeshFilter>(out MeshFilter filter))
+                    currentGroundInfo.currentMesh = filter.mesh;
+                
                 if(currentGroundInfo.currentMesh && currentGroundInfo.currentMesh.isReadable){
                     int limit = currentGroundInfo.groundFromRay.triangleIndex*3, submesh;
                     for(submesh = 0; submesh<currentGroundInfo.currentMesh.subMeshCount; submesh++){
@@ -1014,8 +1016,13 @@ public class SUPERCharacterAIO : MonoBehaviour{
                         if(indices>limit){break;}
                         limit -= indices;
                     }
-                    currentGroundInfo.groundMaterial = currentGroundInfo.groundFromRay.transform.GetComponent<Renderer>().sharedMaterials[submesh];
-                }else{currentGroundInfo.groundMaterial = currentGroundInfo.groundFromRay.collider.GetComponent<MeshRenderer>().sharedMaterial; }
+                    if(currentGroundInfo.groundFromRay.transform.TryGetComponent<Renderer>(out Renderer renderer))
+                        currentGroundInfo.groundMaterial = renderer.sharedMaterials[submesh];
+                }
+                else if (currentGroundInfo.groundFromRay.collider.TryGetComponent<MeshRenderer>(out MeshRenderer renderer))
+                {
+                    currentGroundInfo.groundMaterial = renderer.sharedMaterial;
+                }
             }
         }else{currentGroundInfo.groundMaterial = null; currentGroundInfo.groundLayer = null; currentGroundInfo.groundPhysicMaterial = null;}
         #if UNITY_EDITOR
