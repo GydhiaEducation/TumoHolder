@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using Tumo.Managers;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(BaseObjective))]
 public class BaseObjective : MonoBehaviour
 {
     public string TextToShow;
+    [HideInInspector]
     public Outline OutlineEffect;
+    [HideInInspector]
     public ParticleSystem PickupParticles;
 
+    [HideInInspector]
     public bool IsPickedUp = false;
 
     private void Start()
     {
         this.gameObject.layer = LayerMask.NameToLayer("Objectives");
         this.OutlineEffect.enabled = false;
+
+        this.OutlineEffect = this.GetComponentInChildren<Outline>();
+        this.PickupParticles = this.GetComponentInChildren<ParticleSystem>();
 
         this.PickupParticles.gameObject.SetActive(false);
 
@@ -36,7 +44,7 @@ public class BaseObjective : MonoBehaviour
         this.OutlineEffect.enabled = false;
     }
 
-    public void Pickup()
+    public virtual void Pickup()
     {
         this.IsPickedUp = true;
         StartCoroutine(this._playParticle());

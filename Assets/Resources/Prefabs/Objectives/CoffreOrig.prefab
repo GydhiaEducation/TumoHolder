@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189268618781335618}
-  - component: {fileID: 1189268618781335622}
   - component: {fileID: 9168374464941886858}
+  - component: {fileID: 1189268618781335622}
   m_Layer: 0
   m_Name: CoffreOrig
   m_TagString: Untagged
@@ -35,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1189268618781335622
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189268618781335645}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0582805, y: 0.9381202, z: 1.894558}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &9168374464941886858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +50,20 @@ MonoBehaviour:
   TextToShow: '[E] pour ramasser le "Coffre"'
   OutlineEffect: {fileID: 5479041763365114018}
   PickupParticles: {fileID: 1189268617207563880}
+  IsPickedUp: 0
+--- !u!65 &1189268618781335622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189268618781335645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 0.5, z: 0.9}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1001 &1189268617188039086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,19 +220,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1189268618443438922}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1725327152128326934
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035706540221662747}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2340126, y: 0.47106177, z: 0.73138523}
-  m_Center: {x: 0, y: 0.23553088, z: -0.0000004917383}
 --- !u!114 &5479041763365114018
 MonoBehaviour:
   m_ObjectHideFlags: 0

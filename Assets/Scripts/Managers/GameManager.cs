@@ -113,6 +113,7 @@ namespace Tumo.Managers
             int nearestIndex = 0;
             float currNearest = float.MaxValue;
 
+
             for (int i = 0; i < this.Objectives.Count; i++)
             {
                 float dist = Vector3.SqrMagnitude(this.PlayerRef.transform.position - this.Objectives[i].transform.position);
@@ -124,8 +125,6 @@ namespace Tumo.Managers
             }
 
             this.NearestObjective = this.Objectives[nearestIndex];
-
-            //UIManager.Instance.UpdateCompasNeedle(this.NearestObjective, this.PlayerRef.transform);
         }
 
         public static GameManager Instance { get; private set; }

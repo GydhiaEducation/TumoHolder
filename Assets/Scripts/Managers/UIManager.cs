@@ -16,14 +16,10 @@ namespace Tumo.Managers
         [SerializeField] private TextMeshProUGUI _interractableText;
         #endregion
 
-        #region COMPAS
-        public GameObject Compas;
-        public RectTransform CompasNeedle;
-        #endregion
+        public GameObject TearedPage;
+        public TextMeshProUGUI PageText;
 
-        #region MINIMAP
-        public Image PlayerArrow;
-        #endregion
+        private bool _focusingPage = false;
 
         public static UIManager Instance { get; private set; }
         private void Awake()
@@ -60,6 +56,36 @@ namespace Tumo.Managers
         private void _hideObjectiveText()
         {
             this._interractableText.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (this._focusingPage)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    this.HidePage();
+                }
+            }
+        }
+
+        public void ShowPage(PageObjective Page)
+        {
+            this._focusingPage = true;
+
+            Time.timeScale = 0;
+
+            this.TearedPage.SetActive(true);
+            this.PageText.text = Page.PageDescription;
+        }
+
+        public void HidePage()
+        {
+            this._focusingPage = false;
+
+            Time.timeScale = 1;
+
+            this.TearedPage.SetActive(false);
         }
     }
 }
